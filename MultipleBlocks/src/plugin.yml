@@ -1,0 +1,9 @@
+name: MultiBlocks
+main: Multiblock.Main
+version: 1.0.2
+api-version: 1.13
+commands:
+  yelp:
+    description: Yelp!
+  mblist:
+    description: Displays all the loaded machines.
