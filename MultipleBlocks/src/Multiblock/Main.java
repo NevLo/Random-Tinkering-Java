@@ -7,7 +7,7 @@ import java.util.logging.Logger;
 import org.bukkit.BanList.Type;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
-import org.bukkit.block.data.type.Sign;
+import org.bukkit.block.Sign;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.event.EventHandler;
@@ -56,7 +56,15 @@ public class Main extends JavaPlugin implements Listener {
 		Console.log(Level.INFO, "A sign has been clicked!");
 		if (event.getAction() == Action.RIGHT_CLICK_BLOCK) {
 			if (event.getClickedBlock().getType() == Material.WALL_SIGN) {
+
 				Sign eventSign = (Sign) event.getClickedBlock().getState();
+				// Checks to see if it is a multiblock that needs to be made
+				for (Multiblocks mb : Types) {
+					if (eventSign.getLine(0).equalsIgnoreCase("[" + mb.name + "]")) {
+						event.getPlayer().sendMessage("You have made a new " + mb.name);
+					}
+				}
+				// checks to see if it is a multiblock that needs to be messed with
 
 			}
 
@@ -71,7 +79,7 @@ public class Main extends JavaPlugin implements Listener {
 
 	public static void displayMachineNames() {
 		for (Multiblocks m : Types) {
-			System.out.println(m.name);
+			System.out.println("[" + m.name + "]");
 		}
 	}
 }
